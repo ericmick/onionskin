@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+}
+
+div.stage {
+  display: block;
+}
+
+video {
+  position: absolute;
+  width: 100%;
+  height: auto;
+}
+
+canvas {
+  position: absolute;
+  width: 100%;
+  opacity: 0.5;
+}

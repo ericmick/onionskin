@@ -1,0 +1,24 @@
+{
+	"name": "onionskin",
+	"version": "0.0.1",
+	"description": "overlay video input with still images",
+	"main": "index.js",
+	"dependencies": {
+		"babel-core": "6",
+		"babel-loader": "6",
+		"babel-preset-es2015": "6",
+		"gulp": "3",
+		"gulp-util": "3",
+		"webpack-stream": "3"
+	},
+	"devDependencies": {
+		"webpack-dev-server": "1"
+	},
+	"engines": {
+		"node": "5"
+	},
+	"scripts": {
+		"dev": "webpack-dev-server --inline --hot",
+		"build": "gulp"
+	}
+}
