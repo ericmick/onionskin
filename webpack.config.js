@@ -9,13 +9,17 @@ module.exports = {
 	module: {
 		loaders: [
 			{
-				loader: "babel",
-				test: /\.js$/,
+				loader: "babel-loader",
+				exclude: /node_modules/,
+				test: /\.jsx?$/,
 				query: {
-					presets: ['es2015']
+					presets: ['es2015', 'react']
 				}
 			}
 		]
 	},
-	devtool: "source-map"
+	devtool: "source-map",
+	resolve: {
+		extensions: ['', '.js', '.jsx']
+	}
 };
