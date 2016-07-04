@@ -35,7 +35,6 @@ export default class ContextMenu extends Component {
 	}
 	render() {
 		const contextMenuStyle = {
-			background: 'white',
 			left: this.state.position.x,
 			position: 'absolute',
 			top: this.state.position.y,

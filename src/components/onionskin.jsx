@@ -45,7 +45,7 @@ export default class Onionskin extends Component {
 	setMenu(menu) {
 		this.menu = menu;
 	}
-	snapshot(e) {
+	drawImage(image) {
 		if (this.video && this.canvas) {
 			const video = ReactDOM.findDOMNode(this.video);
 			const canvas = this.canvas;
@@ -53,7 +53,30 @@ export default class Onionskin extends Component {
 			canvas.width = clientWidth;
 			canvas.height = clientHeight;
 			const ctx = canvas.getContext('2d');
-			ctx.drawImage(video, 0, 0, clientWidth, clientHeight);
+			ctx.drawImage(image, 0, 0, clientWidth, clientHeight);
+		}
+	}
+	snapshot(e) {
+		if (this.video) {
+			const video = ReactDOM.findDOMNode(this.video);
+			this.drawImage(video);
+		}
+	}
+	inputImageFile(e) {
+		const input = e.target;
+		if (input.files && input.files[0] && this.canvas) {
+			const reader = new FileReader();
+			reader.onload = (e) => {
+				const image = new Image();
+				image.onload = () => {
+					this.drawImage(image);
+				}
+				image.src = e.target.result;
+			};
+			reader.readAsDataURL(input.files[0]);
+		}
+		if (this.menu) {
+			this.menu.close();
 		}
 	}
 	render() {
@@ -70,7 +93,8 @@ export default class Onionskin extends Component {
 				ref={(canvas) => this.setCanvas(canvas)}>
 			</canvas>
 			<ContextMenu ref={(menu) => this.setMenu(menu)}>
-				<button onClick={(e) => this.snapshot(e)}>snapshot</button>
+				<button onClick={(e) => this.snapshot(e)}>snapshot</button><br/>
+				<input type="file" onChange={(e) => this.inputImageFile(e)}/>
 			</ContextMenu>
 		</div>);
 	}
